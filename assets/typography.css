@@ -1,0 +1,11 @@
+/* Corporate typography: restrained headings with readable body text. */
+.hero h1 { font-size:clamp(29px,4vw,54px); line-height:1.5; letter-spacing:.035em; }
+.page-hero h1 { font-size:clamp(30px,4vw,48px); line-height:1.5; letter-spacing:.05em; }
+h2, .section h2, .equipment-section h2 { font-size:clamp(24px,2.7vw,36px); line-height:1.6; letter-spacing:.045em; }
+.cta h2, .recruit h2 { font-size:clamp(24px,2.6vw,34px); line-height:1.6; }
+.strength h3, .business-item h3, .trust-panel h3,
+.card h3, .feature h3, .work h3 { font-size:clamp(19px,1.7vw,22px); line-height:1.6; letter-spacing:.035em; }
+.work b { font-size:19px; line-height:1.6; }
+@media(max-width:600px) {
+  .hero h1 { font-size:clamp(25px,6.2vw,32px); letter-spacing:.02em; }
+}
