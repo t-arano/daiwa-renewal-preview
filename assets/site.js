@@ -1,0 +1,1 @@
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('show')}),{threshold:.13});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));const header=document.querySelector('.site-header');addEventListener('scroll',()=>header.classList.toggle('is-scrolled',scrollY>18),{passive:true});

@@ -1,0 +1,10 @@
+/* 採用トップの見出しルールに合わせる上書き設定 */
+body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic","YuGothic",Meiryo,system-ui,sans-serif}
+.hero h1,.section h2,.contact h2{font-family:inherit;font-weight:700;letter-spacing:-.025em}
+.hero h1{font-size:clamp(48px,7vw,72px);line-height:1.05}
+.message h2,.section h2{font-size:clamp(32px,4vw,48px);line-height:1.18}
+.contact h2{font-size:clamp(34px,4.6vw,52px);line-height:1.18}
+.section-kicker,.side-label,.eyebrow{font-weight:700;letter-spacing:.3em}
+.job-type{font-weight:700;letter-spacing:.08em}
+.heading-row h2{max-width:8.2em}
+@media(max-width:760px){.hero h1{font-size:clamp(44px,13vw,56px)}.message h2,.section h2{font-size:clamp(30px,9vw,40px)}.contact h2{font-size:clamp(32px,9vw,42px)}}
