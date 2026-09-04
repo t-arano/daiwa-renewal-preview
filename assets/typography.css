@@ -1,4 +1,14 @@
 /* Corporate typography: restrained headings with readable body text. */
+#works .work { position:relative; overflow:hidden; isolation:isolate; background:#00005a; }
+#works .work::before { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg,rgba(0,0,61,.08) 20%,rgba(0,0,61,.88)),var(--work-photo) center/cover; transition:transform .5s ease; }
+#works .work:hover::before { transform:scale(1.05); }
+#works .work:nth-child(1) { --work-photo:url('work-covers/urban.jpg'); }
+#works .work:nth-child(2) { --work-photo:url('work-covers/river.jpg'); }
+#works .work:nth-child(3) { --work-photo:url('work-covers/development.jpg'); }
+#works .work:nth-child(4) { --work-photo:url('work-covers/road.jpg'); }
+#works .work:nth-child(5) { --work-photo:url('work-covers/water.jpg'); }
+#works .work:nth-child(6) { --work-photo:url('work-covers/sabo.jpg'); }
+#works .work span { position:relative; text-shadow:0 2px 8px rgba(0,0,0,.35); }
 .works-grid .work-link[href="work-urban.html"]::before { background-image:linear-gradient(180deg,rgba(0,0,61,.05),rgba(0,0,61,.88)),url('work-covers/urban.jpg'); }
 .works-grid .work-link[href="work-river.html"]::before { background-image:linear-gradient(180deg,rgba(0,0,61,.05),rgba(0,0,61,.88)),url('work-covers/river.jpg'); }
 .works-grid .work-link[href="work-water.html"]::before { background-image:linear-gradient(180deg,rgba(0,0,61,.05),rgba(0,0,61,.88)),url('work-covers/water.jpg'); }
