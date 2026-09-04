@@ -1,32 +1,25 @@
 (() => {
  const enabled=matchMedia('(max-width:800px) and (prefers-reduced-motion:no-preference)');
- const panels=[...document.querySelectorAll('main .section')];
- let pending=false, cards;
- function paint(){
+ const panels=[...document.querySelectorAll('main > .section')];
+ let pending=false;
+ function measure(){
   pending=false;
-  if(!enabled.matches)return;
-  const height=window.innerHeight;
-  panels.forEach(panel=>{
-   const top=panel.getBoundingClientRect().top;
-   const progress=Math.max(0,Math.min(1,(height-top)/(height*.72)));
-   panel.style.setProperty('--story-rise',`${Math.round((1-progress)*180)}px`);
-   panel.style.setProperty('--story-scale',String(.955+.045*progress));
+  document.body.classList.toggle('mobile-story',enabled.matches);
+  const height=document.documentElement.clientHeight;
+  panels.forEach((panel,i)=>{
+   if(!enabled.matches)return;
+   panel.style.setProperty('--story-height', (height-100)+'px');
+   panel.style.setProperty('--story-top', Math.min(100,height-panel.offsetHeight)+'px');
+   panel.style.setProperty('--story-order',i+1);
+   if(getComputedStyle(panel).backgroundColor==='rgba(0, 0, 0, 0)')panel.classList.add('story-paper');
   });
  }
- function schedule(){if(enabled.matches&&!pending){pending=true;requestAnimationFrame(paint)}}
- function setup(){
-  document.body.classList.toggle('mobile-story',enabled.matches);
-  cards?.disconnect();
-  if(!enabled.matches){panels.forEach(p=>{p.style.removeProperty('--story-rise');p.style.removeProperty('--story-scale')});return}
-  cards=new IntersectionObserver(entries=>entries.forEach(entry=>{
-   if(entry.isIntersecting){entry.target.classList.add('story-card');cards.unobserve(entry.target)}
-  }),{threshold:.08});
-  document.querySelectorAll('.work,.strength,.business-item,.trust-panel,.evidence-grid figure,.facility').forEach(el=>cards.observe(el));
-  paint();
- }
- addEventListener('scroll',schedule,{passive:true});
+ function schedule(){if(!pending){pending=true;requestAnimationFrame(measure)}}
+ const observer=new ResizeObserver(schedule);
+ panels.forEach(p=>observer.observe(p));
  addEventListener('resize',schedule,{passive:true});
  addEventListener('pageshow',schedule);
- enabled.addEventListener('change',setup);
- setup();
+ enabled.addEventListener('change',schedule);
+ document.fonts?.ready.then(schedule);
+ measure();
 })();
