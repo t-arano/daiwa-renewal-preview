@@ -3,7 +3,7 @@
   const nav = header?.querySelector('nav');
   if (!nav) return;
   nav.id = 'header-navigation';
-  const button = document.createElement('button');
+  const button = header.querySelector('.menu-toggle') || document.createElement('button');
   button.className = 'menu-toggle';
   button.type = 'button';
   button.setAttribute('aria-controls', nav.id);
