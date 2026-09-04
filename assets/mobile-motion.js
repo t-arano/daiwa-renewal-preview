@@ -1,15 +1,17 @@
 (() => {
- const enabled=matchMedia('(max-width:800px) and (prefers-reduced-motion:no-preference)');
+ const enabled=matchMedia('(prefers-reduced-motion:no-preference)');
  const panels=[...document.querySelectorAll('main > .section')];
  let pending=false;
  function measure(){
   pending=false;
   document.body.classList.toggle('mobile-story',enabled.matches);
   const height=document.documentElement.clientHeight;
+  const header=document.querySelector('.site-header');
+  const clearance=Math.min(Math.round(height*.35),Math.max(100,(header?.offsetHeight||80)+30));
   panels.forEach((panel,i)=>{
    if(!enabled.matches)return;
-   panel.style.setProperty('--story-height', (height-100)+'px');
-   panel.style.setProperty('--story-top', Math.min(100,height-panel.offsetHeight)+'px');
+   panel.style.setProperty('--story-height', (height-clearance)+'px');
+   panel.style.setProperty('--story-top', Math.min(clearance,height-panel.offsetHeight)+'px');
    panel.style.setProperty('--story-order',i+1);
    if(getComputedStyle(panel).backgroundColor==='rgba(0, 0, 0, 0)')panel.classList.add('story-paper');
   });
